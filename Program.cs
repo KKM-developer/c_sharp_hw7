@@ -56,6 +56,17 @@ double[,] FillRealArray(int m, int n)
     }
     return array;
 }
+string CheckElement(int row, int collum, double[,] array)
+{
+    try
+    {
+        return $"Значение элемента с индексами {row} {collum} = {array[row, collum]}";
+    }
+    catch
+    {
+        return "такого числа в массиве нет";
+    }
+}
 Console.WriteLine("Задача 1");
 Console.Write("Введите количество строк двумерного массива ");
 int m = Convert.ToInt32(Console.ReadLine());
@@ -63,3 +74,9 @@ Console.Write("Введите количество стобцов двумерн
 int n = Convert.ToInt32(Console.ReadLine());
 double[,] mas = FillRealArray(m, n);
 PrintArray(mas);
+Console.WriteLine("Задача 2");
+Console.Write("Введите индекс строки ");
+int row = Convert.ToInt32(Console.ReadLine());
+Console.Write("Введите индекс столбца ");
+int collum = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine(CheckElement(row,collum,mas));

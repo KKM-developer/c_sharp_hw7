@@ -102,6 +102,49 @@ double[] FindAvgCollum(int[,] array)
     }
     return avgCollum;
 }
+int FindMin(int[,] array)
+{
+    int min = array[0, 0];
+    foreach (int item in array)
+    {
+        if (min > item) min = item;
+    }
+    return min;
+}
+int FindMax(int[,] array)
+{
+    int max = array[0, 0];
+    foreach (int item in array)
+    {
+        if (max < item) max = item;
+    }
+    return max;
+}
+int[,] SortArray(int[,] array)
+{
+    int[,] mas = new int[array.GetLength(0), array.GetLength(1)];
+    int max = FindMax(array) + 1;
+    for (int i = 0; i < mas.GetLength(0); i++)
+    {
+        for (int j = 0; j < mas.GetLength(1); j++)
+        {
+            mas[i, j] = FindMin(array);
+            for (int f = 0; f < array.GetLength(0); f++)
+            {
+                for (int h = 0; h < array.GetLength(1); h++)
+                {
+                    if (mas[i, j] == array[f, h])
+                    {
+                        array[f, h] = max;
+                        goto nextLoop;
+                    }
+                }
+            }
+        nextLoop: continue;
+        }
+    }
+    return mas;
+}
 Console.WriteLine("Задача 1");
 Console.Write("Введите количество строк двумерного массива ");
 int m = Convert.ToInt32(Console.ReadLine());
@@ -123,3 +166,5 @@ n = Convert.ToInt32(Console.ReadLine());
 int[,] arr = FillArray(m, n);
 PrintIntArray(arr);
 double [] avgMas = FindAvgCollum(arr);
+Console.WriteLine("Задача Hard");
+PrintIntArray(SortArray(arr));

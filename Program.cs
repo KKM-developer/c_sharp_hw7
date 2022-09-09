@@ -28,3 +28,38 @@ m = 3, n = 4.
 1 2 3 4
 5 7 9 10
 */
+void PrintArray(double[,] table)
+{
+    for (int i = 0; i < table.GetLength(0); i++)
+    {
+        for (int j = 0; j < table.GetLength(1); j++)
+        {
+            Console.Write(table[i, j] + "\t");
+        }
+        Console.WriteLine();
+    }
+}
+
+double[,] FillRealArray(int m, int n)
+{
+    double intNumber = 0;
+    double doubleNumber = 0;
+    double[,] array = new double[m, n];
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            intNumber = new Random().Next(1, 100);
+            doubleNumber = Math.Round(new Random().NextDouble(), 2);
+            array[i, j] = intNumber + doubleNumber;
+        }
+    }
+    return array;
+}
+Console.WriteLine("Задача 1");
+Console.Write("Введите количество строк двумерного массива ");
+int m = Convert.ToInt32(Console.ReadLine());
+Console.Write("Введите количество стобцов двумерного массива ");
+int n = Convert.ToInt32(Console.ReadLine());
+double[,] mas = FillRealArray(m, n);
+PrintArray(mas);
